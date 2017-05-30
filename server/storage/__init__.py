@@ -1,0 +1,2 @@
+class StorageAPI(object):
+    pass
