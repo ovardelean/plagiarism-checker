@@ -1,0 +1,37 @@
+<html>
+<head>
+    <script type='text/javascript' src='/static/js/jquery-1.10.1.min.js'></script>
+    <script type='text/javascript' src='/static/js/jqueryui-1.8.16.js'></script>
+    <script type='text/javascript' src='/static/js/papersScript.js'></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/css/papersStyle.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/css/style.css">
+</head>
+<body>
+<div>
+    <h2 class="title">Interactive Plagiarism Checker</h2>
+    <h2 style="text-align:center">PDFs Database</h2>
+</div>
+<div style="text-align: center">
+    <table style="margin:auto" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr>
+                <td>
+                    <form action="/insertPdf" method="POST" enctype="multipart/form-data">
+                        <span style="font-size:16px;">Insert PDF</span><br>
+                        <input type="file" name="f"><br>
+                        <input type="submit" name="send" value="Send">
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div id="papers_div">
+
+    </div>
+</div>
+<script>
+    put_papers_info();
+</script>
+</body>
+</html>

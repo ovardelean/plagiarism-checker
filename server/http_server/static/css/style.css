@@ -1,0 +1,54 @@
+
+
+head{
+    text-align:center;
+}
+
+caption{
+    font-weight: bold;
+}
+
+.title{
+    text-align:center;
+    font-size: 50px;
+    color: red;
+}
+
+#search_div{
+    text-align: center;
+    width: 30%;
+    height: auto;
+    display: inline-block;
+    float: left;
+    overflow:auto;
+}
+
+#search_textarea{
+    width: 500px;
+    height: 320px;
+    font-size: 120%;
+    display: inline-block;
+}
+
+#result_div{
+    width: 69%;
+    display: inline-block;
+    height: auto;
+    float: left;
+    background-color: white;
+}
+
+#result_details_div{
+    display: inline-block;
+    width: 90%;
+    margin: 20px;
+
+}
+#result_text_title{
+    text-align: center;
+    width: 100%;
+}
+
+#check_button{
+    font-size: 20px;
+}

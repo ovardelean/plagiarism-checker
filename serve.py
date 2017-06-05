@@ -3,8 +3,7 @@ import os
 import argparse
 import shutil
 
-sys.path.insert(0, os.path.abspath(".."))
-from server.server import Server
+from server.server import Server, ServerHandler
 from server.http_server.cherrypy_server import CherrypyHTTPServer
 
 def get_arg_parser():
@@ -36,7 +35,8 @@ def main(args):
         'log.access_file':"access.log"
     })
 
-    handler = Server()
+    server = Server()
+    handler = ServerHandler(server)
 
     http_server.set_handler(handler)
     http_server.start()

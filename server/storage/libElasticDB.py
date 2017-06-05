@@ -73,6 +73,9 @@ class ElasticDB(object):
     def deleteIndex(self, index, excOnFail=1, logExc=1):
         return  self.execute(self.es.indices.delete, excOnFail, index=index, logExc=logExc)
 
+    def existsIndex(self, index, excOnFail=1, logExc=1):
+        return  self.execute(self.es.indices.exists, excOnFail, index=index, logExc=logExc)
+
     def insert(self, index=default_index, doc_type=default_doc_type, id=1, body=None, ignore=None, refresh = True, excOnFail=1, logExc=1, timeout=60):
         insRes = self.execute('index', excOnFail, index=index, doc_type=doc_type, id=id, body=body, ignore=ignore or [],refresh=refresh, logExc=logExc, timeout=timeout)
         if not insRes or 'error' in insRes:

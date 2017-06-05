@@ -61,6 +61,11 @@ class CherrypyHTTPServer(HTTPServer):
                 return html_file
 
             @cherrypy.expose
+            def dbInfo(self, **kargs):
+                html_file = open(os.path.join(WEB_DIR, "html", "dbInfo.html")).read()
+                return html_file
+
+            @cherrypy.expose
             def test(self, **kargs):
                 return json.dumps(g_handler.test(**kargs))
 
@@ -71,6 +76,14 @@ class CherrypyHTTPServer(HTTPServer):
             @cherrypy.expose
             def indexFilePath(self, **kargs):
                 return json.dumps(g_handler.indexFilePath(**kargs))
+
+            @cherrypy.expose
+            def queryText(self, **kargs):
+                return json.dumps(g_handler.queryText(cherrypy.request.method, **kargs))
+
+            @cherrypy.expose
+            def pdfsInfo(self, **kargs):
+                return json.dumps(g_handler.pdfsInfo(cherrypy.request.method, **kargs))
 
 
         root = IndexHandler()
