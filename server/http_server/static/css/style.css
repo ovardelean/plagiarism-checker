@@ -4,6 +4,10 @@ head{
     text-align:center;
 }
 
+body{
+    background-color: #e6ffff;
+}
+
 caption{
     font-weight: bold;
 }
@@ -32,7 +36,7 @@ caption{
 
 #result_div{
     width: 69%;
-    display: inline-block;
+    display: none;
     height: auto;
     float: left;
     background-color: white;

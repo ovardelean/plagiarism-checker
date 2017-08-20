@@ -122,7 +122,7 @@ class ElasticDB(object):
      
     def query(self, index=default_index, query = None, excOnFail=1, logExc=1):
         searchRes = self.execute('search', excOnFail, index=index, body=query, logExc=logExc)
-        print 'Total hits: ', searchRes['hits']['total']
+        #print 'Total hits: ', searchRes['hits']['total']
         return searchRes['hits']
 
     def count(self, index=default_index, doc_type=default_doc_type, body=None, ignore=None, excOnFail=1, logExc=1):

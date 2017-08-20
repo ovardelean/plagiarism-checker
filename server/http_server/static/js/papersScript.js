@@ -42,7 +42,6 @@ function request_pdfs_info(limit, name){
 
 function request_delete_paper(name){
     data = {
-        'limit': limit,
         'name': name
     };
     var return_data = null;
@@ -69,8 +68,8 @@ function put_papers_info(){
         r[++j] = '<td>'+pdfsInfo[i]['pages']+'</td>';
         r[++j] = '<td>'+parseInt(pdfsInfo[i]['size'] / 1024)+' KB</td>';
         r[++j] = '<td>'+timeConverter(pdfsInfo[i]['insert_time'])+'</td>';
-        r[++j] = '<td><button>Download</button></td>';
-        r[++j] = '<td><button>Delete</button></td>';
+        r[++j] = '<td><button onclick="window.location.replace(\'/downloadPdf?pdf_name='+pdfsInfo[i]['pdf']+'\',\'_blank\')">Download</button></td>';
+        r[++j] = '<td><button onclick="request_delete_paper(\''+pdfsInfo[i]['pdf']+'\');put_papers_info()">Delete</button></td>';
         r[++j] = '</tr>';
     }
     r[++j] = '</tbody></table>'

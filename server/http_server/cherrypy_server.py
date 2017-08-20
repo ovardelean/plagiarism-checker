@@ -71,7 +71,32 @@ class CherrypyHTTPServer(HTTPServer):
 
             @cherrypy.expose
             def indexFile(self, **kargs):
-                return json.dumps(g_handler.indexFile(**kargs))
+                fileInfo = None
+                for key in kargs.keys():
+                    if hasattr(kargs[key], "filename"):
+                        content_type = "application/octet-stream"
+                        if hasattr(kargs[key], "content_type"):
+                            content_type = kargs[key].content_type
+                        fileInfo = (kargs[key].file, kargs[key].filename, content_type)
+                if fileInfo and fileInfo[0]:
+                    fileData = fileInfo[0].read()
+                    fileName = fileInfo[1]
+                json.dumps(g_handler.indexFile(cherrypy.request.method, fileName, fileData))
+                raise cherrypy.HTTPRedirect("/dbInfo")
+
+            @cherrypy.expose
+            def checkPdf(self, **kargs):
+                fileInfo = None
+                for key in kargs.keys():
+                    if hasattr(kargs[key], "filename"):
+                        content_type = "application/octet-stream"
+                        if hasattr(kargs[key], "content_type"):
+                            content_type = kargs[key].content_type
+                        fileInfo = (kargs[key].file, kargs[key].filename, content_type)
+                if fileInfo and fileInfo[0]:
+                    fileData = fileInfo[0].read()
+                    fileName = fileInfo[1]
+                return json.dumps(g_handler.checkPdf(cherrypy.request.method, fileName, fileData))
 
             @cherrypy.expose
             def indexFilePath(self, **kargs):
@@ -84,6 +109,30 @@ class CherrypyHTTPServer(HTTPServer):
             @cherrypy.expose
             def pdfsInfo(self, **kargs):
                 return json.dumps(g_handler.pdfsInfo(cherrypy.request.method, **kargs))
+
+            @cherrypy.expose
+            def deletePaper(self, **kargs):
+                return json.dumps(g_handler.deletePaper(cherrypy.request.method, **kargs))
+
+            @cherrypy.expose
+            def downloadPdf(self, **kargs):
+                print kargs
+                fileName, fileData = g_handler.downloadPdf(cherrypy.request.method, **kargs)
+                if not fileName:
+                    return "Pdf not found"
+                cherrypy.response.headers["Content-Type"] = "application/octet-stream"
+                cherrypy.response.headers["Content-Disposition"] = "attachment; filename=%s;" % str(fileName)
+                return fileData
+
+            @cherrypy.expose
+            def downloadResult(self, **kargs):
+                print kargs
+                fileName, fileData = g_handler.downloadResult(cherrypy.request.method, **kargs)
+                if not fileName:
+                    return "Pdf not found"
+                cherrypy.response.headers["Content-Type"] = "application/octet-stream"
+                cherrypy.response.headers["Content-Disposition"] = "attachment; filename=%s;" % str(fileName)
+                return fileData
 
 
         root = IndexHandler()

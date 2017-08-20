@@ -8,7 +8,8 @@
 </head>
 <body>
 <div>
-    <h2 class="title">Interactive Plagiarism Checker</h2>
+    <h2 class="title">Interactive Plagiarism Checker
+        <button onclick="window.location.replace('/')">main page</button></h2>
     <h2 style="text-align:center">PDFs Database</h2>
 </div>
 <div style="text-align: center">
@@ -16,7 +17,7 @@
         <tbody>
             <tr>
                 <td>
-                    <form action="/insertPdf" method="POST" enctype="multipart/form-data">
+                    <form action="/indexFile" method="POST" enctype="multipart/form-data">
                         <span style="font-size:16px;">Insert PDF</span><br>
                         <input type="file" name="f"><br>
                         <input type="submit" name="send" value="Send">
