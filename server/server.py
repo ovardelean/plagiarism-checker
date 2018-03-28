@@ -197,7 +197,7 @@ class Server(object):
 
     def sentence_split(self, txt, extra=None):
         if extra:
-            txt = txt.replace(": ",". ").replace('" ',". ").replace("; ",". ").replace("\n",". ")
+            txt = txt.replace(": ",". ").replace('" ',". ").replace("; ",". ").replace("\n\n",". ")
         phrases = txt.split('. ')
         good_phrases = []
         for phrase in phrases:
@@ -367,3 +367,4 @@ if __name__ == '__main__':
     x = server.check_uploaded_pdf('/home/ovidiu/Workspace/Facultate/licenta/server-project/work_dir/digital disaster.pdf')
     import pprint
     pprint.pprint(x)
+

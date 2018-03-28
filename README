@@ -1,0 +1,22 @@
+Iteractive Plagiarism Checker
+
+Web-Based plagiarism checker using elasticsearch and cherrypy, with custom papers database.
+
+Supprted papers: 
+	- PDF
+
+Tools Requirements:
+
+	- python 2.7
+	- elasticsearch 2.4.5
+	- apache tika 1.14
+	- pdftk 2.02
+
+Python modules:
+	
+	- elasticsearch
+	- cherrypy
+
+JS Libraries:
+
+	- jquery-1.8.16
