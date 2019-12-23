@@ -1,10 +1,8 @@
 import sys
-import os
 import argparse
-import shutil
 
-from server.server import Server, ServerHandler
-from server.http_server.cherrypy_server import CherrypyHTTPServer
+from src.server import Server, ServerHandler
+from src.server.http_server.cherrypy_server import CherrypyHTTPServer
 
 def get_arg_parser():
     parser = argparse.ArgumentParser()

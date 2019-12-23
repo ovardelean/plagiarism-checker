@@ -1,7 +1,7 @@
-import os, sys, json, shutil, base64, time, pprint
+import os, sys, shutil, base64, time
 import storage.libElasticDB  as esdb
 sys.path.append('..')
-import config
+from src import config
 import utils
 
 class ServerHandler(object):
@@ -50,7 +50,7 @@ class Server(object):
 
     def test(self):
         db = self.get_db()
-        return db.get_mapping(index=config.PAPERS_INDEX,doc_type=config.PAPERS_DOC_PAGES)
+        return db.get_mapping(index=config.PAPERS_INDEX, doc_type=config.PAPERS_DOC_PAGES)
 
     def index_creater(self):
         es = self.get_db()
@@ -154,14 +154,14 @@ class Server(object):
             print pdf_name + " does not exist"
             return
         for page in range(1, pdf_data['nr_pages']+1):
-            es.delete(index=config.PAPERS_INDEX, doc_type=config.PAPERS_DOC_PAGES, id=pdf_name+'_'+str(page))
+            es.delete(index=config.PAPERS_INDEX, doc_type=config.PAPERS_DOC_PAGES, id=pdf_name + '_' + str(page))
         es.delete(index=config.PAPERS_INDEX, doc_type=config.PAPERS_DOC_META, id=pdf_name)
-        if os.path.isfile(os.path.join(config.PDF_STORAGE, pdf_name+'.pdf')):
-            os.remove(os.path.join(config.PDF_STORAGE, pdf_name+'.pdf'))
+        if os.path.isfile(os.path.join(config.PDF_STORAGE, pdf_name + '.pdf')):
+            os.remove(os.path.join(config.PDF_STORAGE, pdf_name + '.pdf'))
 
     def download_pdf(self, pdf_name):
-        if os.path.isfile(os.path.join(config.PDF_STORAGE, pdf_name+'.pdf')):
-            fd = open(os.path.join(config.PDF_STORAGE, pdf_name+'.pdf'))
+        if os.path.isfile(os.path.join(config.PDF_STORAGE, pdf_name + '.pdf')):
+            fd = open(os.path.join(config.PDF_STORAGE, pdf_name + '.pdf'))
             return pdf_name, fd
         return None, None
 

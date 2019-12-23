@@ -1,6 +1,7 @@
-import os, sys, json, shutil, subprocess, base64, time
+import os, sys, shutil, subprocess, time
 sys.path.append('..')
-import config
+from src import config
+
 
 class PDFUtils(object):
 

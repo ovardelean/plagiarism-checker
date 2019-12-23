@@ -1,9 +1,6 @@
 import sys
-import os
-import argparse
-import shutil
 
-from server.server import Server
+from src.server import Server
 
 def main(args):
 
